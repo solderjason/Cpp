@@ -1,57 +1,73 @@
 #include <windows.h>
 #include <iostream>
 #include <random>
+#ifdef _WIN32
+
+#else
+#include <unistd.h>
+#endif
+#include <iostream>
+#include <cstdlib>
 using namespace std;
-bool clicker;
-int rand;
-bool random;
 
 //void location(int x, int y){
 
 //}
 void options()
 {
-std::cout<< "Press '/' to enable left click, 'r' to enable randomized left_click and '\' to turn off autoclick ";
+std::cout<< "Press 'E' to enable left click, 'D' to enable randomized left_click and 'R' to turn off autoclick "<<std::endl;
 }
 
 void left_click(){
+  bool clicker=false;
+  bool random=false;
+std::cout<<"ON1 "<<std::endl;
 
-  while(1){
-    if(GetAsyncKeyState('/')){
-      clicker=true;
+
+
+  while(true) {
+    if (GetAsyncKeyState('E'))
+    {
+      clicker = true;
+      std::cout<<"ON "<<std::endl;
     }
 
-  else  if(GetAsyncKeyState('\') ){
-      clicker=false;
+ else if (GetAsyncKeyState('D'))
+  {
+      clicker = false;
+        std::cout<<"OFF "<<std::endl;
     }
-    else  if(GetAsyncKeyState('r') ){
-        clicker=true;
-        random=true;
+    else if (GetAsyncKeyState('R'))    {
+        clicker = true;
+        random = true;
+          std::cout<<"Random "<<std::endl;
       }
 if(clicker==true){
-  mouse_event( MOUSEEVENTF_LEFTDOWN, 0, 0, 0 );
+  mouse_event( MOUSEEVENTF_LEFTDOWN, 0, 0, 0 ,0);
 
-  Sleep( 50 );
-  mouse_event( MOUSEEVENTF_LEFTUP, 0, 0, 0 );
-}
-if (clicker==true && random==true){
-  mouse_event( MOUSEEVENTF_LEFTDOWN, 0, 0, 0 );
 
-  Sleep( rand() %50 );
-  mouse_event( MOUSEEVENTF_LEFTUP, 0, 0, 0 );
+  mouse_event( MOUSEEVENTF_LEFTUP, 0, 0, 0 ,0);
+    Sleep( 10 );
 }
-}
-}
-/*
-void right_click(){
-  mouse_event( MOUSEEVENTF_RIGHTDOWN, 0, 0, 0 );
+ else if (clicker==true && random==true){
+  mouse_event( MOUSEEVENTF_LEFTDOWN, 0, 0, 0 ,0);
 
-  Sleep( 50 );
-  mouse_event( MOUSEEVENTF_RIGHTP, 0, 0, 0 );
+  Sleep( rand() %10 );
+  mouse_event( MOUSEEVENTF_LEFTUP, 0, 0, 0,0 );
 }
-*/
-int main(){
+  }
+    }
+
+
+
+
+int main()
+{
 options();
+  std::cout<<"ON "<<std::endl;
 left_click();
+
+
 return 0;
+
 }
