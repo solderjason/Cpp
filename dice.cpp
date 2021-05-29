@@ -7,33 +7,29 @@
 #include <chrono>
 using namespace std;
 
-
 int main(){
   srand(time(NULL));
 
 int faces=0;
 int rolls=0;
-int result=0;
 
-std::cout<<"Enter the number of faces:"
-std::cin>> faces
-std::cout<<"Enter the number of rolls:"
-
-std::cin>> rolls
-
+std::cout<<"Enter the number of faces:"<<std::endl;
+std::cin>> faces;
+std::cout<<"Enter the number of rolls:"<<std::endl;
+std::cin>> rolls;
 
 
 for (int i = 0; i <rolls; i++) {
-  result=rand() %number +1 //+1 so its from 1-n
-  std::cout<<"You rolled "+'result'<<std::endl
+int   result=0;
+  result=rand() %faces +1; //+1 so its from 1-n
+  std::cout<<"You rolled "<<result<<std::endl;
 
-  auto timenow =
-     chrono::system_clock::to_time_t(chrono::system_clock::now());
+  auto timenow =   chrono::system_clock::to_time_t(chrono::system_clock::now());
 
-   cout << ctime(&timenow) << endl;
-  return 0;
+  std::cout << ctime(&timenow) << std::endl;
+
 }
 
-  system("PAUSE")'
+  system("PAUSE");
   return 0;
 }
